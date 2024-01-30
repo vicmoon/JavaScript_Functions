@@ -95,64 +95,58 @@
 
 
 
-const airCompany = {
-    airline: 'Air Victoria', 
-    code: 'VM',
-    bookings:[], 
-    book(flightNumber, name) {
-        console.log(`${name} booked a seat on ${this.airline} flight ${this.code} ${flightNumber}`
-    );
-    this.bookings.push({flight: `${this.code} ${flightNumber}`, name});
-    }
+// 
+
+const poll = {
+    question: 'What is your favourite programming language?',
+    options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+    // This generates [0, 0, 0, 0]. More in the next section 😃
+    answers: new Array(4).fill(0),
+
+    registerNewAnswer: function () {
+        const answer =  Number(prompt(`${this.question} ${this.options} (Write option number)`));
+        console.log(answer);
+    } 
+
+
+
+  
 };
 
-airCompany.book(239, 'Victoria Munteanu');
-console.log(airCompany);
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 
-const noWings = {
-    airline :'NoWings',
-    code:'NW',
-    bookings: [],
-}
-
-const book = airCompany.book; // it's not the same method, just a function 
+typeof answer === 'number' && answer <this.answers.length && this.answers[answer]++; 
 
 
-//Call Method 
+// const loopOptions = funtion(){
+//     while(i =0; i < poll.options.length; i++ ) {
+//         console.log();
+//     }
 
-book.call(noWings, 24, 'No Name');  // using the call method 
-console.log(noWings);
+// };
 
-book.call(airCompany, 235, 'Fake Name'); 
-console.log(airCompany);
+ //Challenge 
 
+//  1. Create a method called 'registerNewAnswer' on the 'poll' object. The method does 2 things:
+//   1.1. Display a prompt window for the user to input the number of the selected option. The prompt should look like this:
+//         What is your favourite programming language?
+//         0: JavaScript
+//         1: Python
+//         2: Rust
+//         3: C++
+//         (Write option number)
+  
+//   1.2. Based on the input number, update the answers array. For example, if the option is 3, increase the value AT POSITION 3 of the array by 1. Make sure to check if the input is a number and if the number makes sense (e.g answer 52 wouldn't make sense, right?)
+// 2. Call this method whenever the user clicks the "Answer poll" button.
+// 3. Create a method 'displayResults' which displays the poll results. The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1". 
+// 4. Run the 'displayResults' method at the end of each 'registerNewAnswer' method call.
 
-//Apply method 
+// HINT: Use many of the tools you learned about in this and the last section 😉
 
-const flightData = [582, 'George Cooper'];
-book.apply(noWings, flightData); 
-console.log(noWings);
+// BONUS: Use the 'displayResults' method to display the 2 arrays in the test data. Use both the 'array' and the 'string' option. Do NOT put the arrays in the poll object! So what shoud the this keyword look like in this situation?
 
-book.call(noWings,...flightData);
+// BONUS TEST DATA 1: [5, 2, 3]
+// BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
-// Bind Method 
+// GOOD LUCK 😀
 
-const bookNoWings = book.bind(noWings);
-const bookairCompany = book.bind(airCompany);
-bookairCompany(123, 'La  lalalalaaaaa')
-bookNoWings(25, 'Victoria Munteanu');
-
-
-//With Event Listeners 
-
-airCompany.planes = 200 ; 
-
-airCompany.buyPlane = function (){
-    console.log(this);
-    
-    this.planes++ 
-    console.log(this.planes++);
-
-}
-
-document.querySelector('.buy').addEventListener('click', airCompany.buyPlane); 
