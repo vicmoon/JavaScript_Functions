@@ -178,3 +178,23 @@ poll.displayResults.call({answers :[1, 5, 3, 9, 6, 1]});
 
 // GOOD LUCK 😀
 
+
+
+// const runOnce = function(){
+//     console.log('This will never run again');
+// }
+// runOnce(); 
+
+
+// (function(){
+//     console.log('This will never run again');
+// })(); // immediately invoked expression 
+
+// (() => console.log('This will ALSO never run again'))();
+
+// //functions create scopes
+//  //global scope does not have access to the private (function) scope 
+
+
+ // Closures 
+
