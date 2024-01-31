@@ -104,19 +104,47 @@ const poll = {
     answers: new Array(4).fill(0),
 
     registerNewAnswer: function () {
-        const answer =  Number(prompt(`${this.question} ${this.options} (Write option number)`));
-        console.log(answer);
-    } 
 
+        //get the answer 
+        const answer =  Number(prompt(`${this.question}\n ${this.options.join('\n')}\n (Write option number)`));
+        console.log(this.answers);
+        
+        // register the answer 
 
+        if(typeof answer === 'number' && answer < this.answers.length) {
+            this.answers[answer]++;
+            console.log(this.answers);  
+        }
+        // if(typeof answer === 'number') {
+        //     alert('One digit numbers accepted only! Try again');
+        // }
 
-  
+        this.displayResults();
+        this.displayResults('string');
+
+        
+    },
+
+    displayResults: function(type = 'array'){
+        if(type === 'array' ){
+           console.log(this.answers);
+        }
+        else if( type === 'string'){
+            alert(`Poll results are ${this.answers.join(',')}`);
+        }    
+    }
 };
 
-document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));  // bind = to use the this keyword attached to the poll objects
 
-typeof answer === 'number' && answer <this.answers.length && this.answers[answer]++; 
 
+
+
+// BONUS TEST DATA 1: [5, 2, 3]
+// BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
+
+poll.displayResults.call({answers :[5, 2, 3]});
+poll.displayResults.call({answers :[1, 5, 3, 9, 6, 1]});
 
 // const loopOptions = funtion(){
 //     while(i =0; i < poll.options.length; i++ ) {
